@@ -20,10 +20,10 @@ class DomainTest {
     @Test
     fun priceFormatterRU() {
         val formatter = PriceFormatterRU()
-        assertEquals("123,01", formatter.format(123.01))
-        assertEquals("100", formatter.format(100.001))
-        assertEquals("100,99", formatter.format(100.99))
-        assertEquals("101", formatter.format(100.995))
+        assertEquals("123,01Р", formatter.format(123.01))
+        assertEquals("100Р", formatter.format(100.001))
+        assertEquals("100,99Р", formatter.format(100.99))
+        assertEquals("101Р", formatter.format(100.995))
     }
 
     @Test
@@ -35,7 +35,7 @@ class DomainTest {
 
         val cart = Cart(list)
         val totalPrice = 45000.0*0.95+104000.0*0.93+4000.0
-        val totalFormattedPrice = "%.0f".format(totalPrice)
+        val totalFormattedPrice = "%.0fР".format(totalPrice)
         assertEquals("Total Price in Cart",
             totalFormattedPrice, cart.getPrice(PriceFormatterRU()))
     }
