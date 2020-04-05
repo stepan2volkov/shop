@@ -2,7 +2,7 @@ package susu.stepanvolkov.shop.domain
 
 import kotlin.math.roundToInt
 
-class PriceFormatterRU: PriceFormatter {
+class PriceFormatterRU: Cart.PriceFormatter {
     override fun format(price: Double): String {
         var formatString = "%.2fР"
         val roundedPrice = (100*price).roundToInt()/100.0

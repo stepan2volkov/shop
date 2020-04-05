@@ -1,6 +1,11 @@
 package susu.stepanvolkov.shop.domain
 
 class Cart (var products: List<Product>) {
+    
+    interface PriceFormatter {
+        fun format(price: Double): String
+    }
+
     /**
      * @return formatted total price of [products] in Cart with applied discount
      */

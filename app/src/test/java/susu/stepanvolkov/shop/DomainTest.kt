@@ -19,7 +19,7 @@ class DomainTest {
 
     @Test
     fun priceFormatterRU() {
-        val formatter = PriceFormatterRU()
+        val formatter: Cart.PriceFormatter = PriceFormatterRU()
         assertEquals("123,01Р", formatter.format(123.01))
         assertEquals("100Р", formatter.format(100.001))
         assertEquals("100,99Р", formatter.format(100.99))
