@@ -4,5 +4,8 @@ class Cart (var products: List<Product>) {
     /**
      * @return total price of [products] in Cart with applied discount
      */
-    fun calcTotalPrice(): Double = products.sumByDouble { product ->  product.calcDiscountPrice()}
+    fun getPrice(formatter: PriceFormatter): String {
+        val totalPrice = products.sumByDouble { product -> product.calcDiscountPrice() }
+        return formatter.format(totalPrice)
+    }
 }
