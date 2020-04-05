@@ -1,5 +1,6 @@
 package susu.stepanvolkov.shop.domain
 
+// TODO: move PriceFormatter into constructor
 class Cart (var products: List<Product> = emptyList<Product>()) {
 
     interface PriceFormatter {
