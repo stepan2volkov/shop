@@ -9,6 +9,8 @@ class Product (
      */
     fun calcPriceWithDiscount(): Double = price * (1 - salePercent / 100.0)
 
+    fun calcDiscount(): Double = price * (salePercent / 100.0)
+
     fun getName(): String = name
 
     companion object {
