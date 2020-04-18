@@ -19,6 +19,7 @@ class CheckoutActivity : AppCompatActivity(), CheckoutView {
 
         toolbar.headerText.text = getString(R.string.checkout_header)
         toolbar.headerBackBtn.setOnClickListener{ finish() }
+        toolbar.shoppingCartBtn.visibility = View.GONE
 
         presenter.attachView(this)
         presenter.calcTotalPrice()

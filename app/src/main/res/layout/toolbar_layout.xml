@@ -29,9 +29,21 @@
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/shoppingCartBtn"
         app:layout_constraintStart_toEndOf="@+id/headerBackBtn"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Header Text" />
+
+    <ImageButton
+        android:id="@+id/shoppingCartBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:contentDescription="@string/back_description"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_shopping_cart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
