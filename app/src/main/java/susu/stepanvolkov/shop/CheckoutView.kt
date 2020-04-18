@@ -7,7 +7,7 @@ import moxy.viewstate.strategy.StateStrategyType
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface CheckoutView: MvpView {
 
-    /* Cart information methods */
+    /* Information about totals  */
     fun showTotalPrice(price: Double)
     fun showDiscount(discountPrice: Double)
     fun showPriceWithDiscount(price: Double)

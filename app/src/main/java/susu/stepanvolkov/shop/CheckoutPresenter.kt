@@ -40,7 +40,7 @@ class CheckoutPresenter(): MvpPresenter<CheckoutView>() {
 
         val number: String = when {
             (phone[0]=='+') and (phone[1]=='7') -> phone.substring(2)
-            (phone[0]=='8') and (phone.length==11) -> phone.substring(1)
+            (phone[0]=='8') -> phone.substring(1)
             else -> return false
         }
 
