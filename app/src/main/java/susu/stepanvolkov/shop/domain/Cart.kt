@@ -1,7 +1,9 @@
 package susu.stepanvolkov.shop.domain
 
-// TODO: move PriceFormatter into constructor
-class Cart (var products: List<Product> = emptyList<Product>()) {
+
+class Cart (
+    private val products: List<Product> = emptyList<Product>(),
+    private val formatter: PriceFormatter) {
 
     interface PriceFormatter {
         fun format(price: Double): String
@@ -11,10 +13,10 @@ class Cart (var products: List<Product> = emptyList<Product>()) {
     /**
      * @return formatted total price of [products] in Cart with applied discount
      */
-    fun getTotalPrice(formatter: PriceFormatter): String {
+    fun getTotalPrice(): String {
         val totalPrice = products.sumByDouble { product -> product.calcDiscountPrice() }
         return formatter.format(totalPrice)
     }
 
-    fun printProducts(formatter: PriceFormatter) = formatter.print(products)
+    fun printProducts() = formatter.print(products)
 }
