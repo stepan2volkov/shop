@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
 import kotlinx.android.synthetic.main.activity_checkout.*
+import kotlin.math.roundToInt
 
 class CheckoutActivity : AppCompatActivity(), CheckoutView {
     private val presenter = CheckoutPresenter()
@@ -64,5 +65,14 @@ class CheckoutActivity : AppCompatActivity(), CheckoutView {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         }
+    }
+    /**
+     * @return formatted price. For example, "1001.50 Р" or "7500 Р".
+     * */
+    fun format(price: Double): String {
+        val roundedPrice = (100*price).roundToInt()/100.0
+
+        val formatString = if (roundedPrice % 1 > 0) "%.2f Р" else "%.0f Р"
+        return formatString.format(roundedPrice)
     }
 }
