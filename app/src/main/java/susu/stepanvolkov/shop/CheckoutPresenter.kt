@@ -11,9 +11,9 @@ class CheckoutPresenter(): MvpPresenter<CheckoutView>() {
     /**
      * @return formatted total price of [products] in Cart with applied discount
      */
-    fun calcTotalDiscountPrice() {
-        val totalPrice = products.sumByDouble { product -> product.calcPriceWithDiscount() }
-        viewState.showPriceWithDiscount(totalPrice)
+    fun calcPriceWithDiscount() {
+        val priceWithDiscount = products.sumByDouble { product -> product.calcPriceWithDiscount() }
+        viewState.showPriceWithDiscount(priceWithDiscount)
     }
 
 
@@ -39,15 +39,9 @@ class CheckoutPresenter(): MvpPresenter<CheckoutView>() {
         if (phone.length<11) return false
 
         val number: String = when {
-            (phone[0]=='+') and (phone[1]=='7') -> {
-                phone.substring(2)
-            }
-            (phone[0]=='8') and (phone.length==11) -> {
-                phone.substring(1)
-            }
-            else -> {
-                return false
-            }
+            (phone[0]=='+') and (phone[1]=='7') -> phone.substring(2)
+            (phone[0]=='8') and (phone.length==11) -> phone.substring(1)
+            else -> return false
         }
 
         return number.isDigitsOnly() and (number.length==10)

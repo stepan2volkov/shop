@@ -18,7 +18,7 @@ class CheckoutActivity : AppCompatActivity(), CheckoutView {
         presenter.attachView(this)
         presenter.calcTotalPrice()
         presenter.calcDiscount()
-        presenter.calcTotalDiscountPrice()
+        presenter.calcPriceWithDiscount()
 
         setListeners()
     }
