@@ -1,4 +1,4 @@
-package susu.stepanvolkov.shop.domain
+package susu.stepanvolkov.shop
 
 class Product (
     private val name: String,
@@ -20,8 +20,8 @@ class Product (
          * @return list of products. Test implementation yet.
          */
         fun getProducts(): List<Product> {
-            val iphone = Product("iPhone", 73000.0,7)
-            val samsung = Product("Samsung", 54000.0,13)
+            val iphone = Product("iPhone", 73000.0, 7)
+            val samsung = Product("Samsung", 54000.0, 13)
 
             return listOf(iphone, samsung)
         }
