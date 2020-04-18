@@ -6,13 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".CheckoutActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/checkoutOrderBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -245,21 +254,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fullPriceHeader" />
 
+            <Button
+                android:id="@+id/checkoutOrderBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/checkout_btn"
+                android:layout_marginTop="16dp"
+                android:text="@string/checkout_order"
+                android:textColor="@android:color/white"
+                app:layout_constraintTop_toBottomOf="@id/discountHeader"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-
-    <Button
-        android:id="@+id/checkoutOrderBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/checkout_btn"
-        android:text="@string/checkout_order"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

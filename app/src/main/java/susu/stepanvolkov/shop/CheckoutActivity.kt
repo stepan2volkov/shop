@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_checkout.*
+import kotlinx.android.synthetic.main.toolbar_layout.view.*
 import kotlin.math.roundToInt
 
 class CheckoutActivity : AppCompatActivity(), CheckoutView {
@@ -15,6 +16,10 @@ class CheckoutActivity : AppCompatActivity(), CheckoutView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_checkout)
+
+        toolbar.headerText.text = getString(R.string.checkout_header)
+        toolbar.headerBackBtn.setOnClickListener{ finish() }
+
         presenter.attachView(this)
         presenter.calcTotalPrice()
         presenter.calcDiscount()
