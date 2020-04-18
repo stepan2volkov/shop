@@ -47,7 +47,7 @@ class CheckoutActivity : AppCompatActivity(), CheckoutView {
     }
 
     override fun showDiscount(discountPrice: Double) {
-        discount.text = format(discountPrice)
+        discount.text = format(-discountPrice)
     }
 
     override fun showPriceWithDiscount(price: Double) {
