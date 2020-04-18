@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">shop</string>
+    <string name="checkout_header">Оформление заказа</string>
+    <string name="cash">Наличными</string>
+    <string name="card">Картой при получении</string>
+    <string name="payment_method">Способ оплаты</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="contacts_header">Контактные данные</string>
+    <string name="last_name">Фамилия</string>
+    <string name="first_name">Имя</string>
+    <string name="middle_name">Отчество</string>
+    <string name="order_header">Информация о заказе</string>
+    <string name="full_price">Полная цена</string>
+    <string name="total_price">Итого</string>
+    <string name="discount">Скидка</string>
+    <string name="checkout_order">Оформить заказ</string>
+    <string name="phone_example">Пример, 89999999999 или +79999999999</string>
 </resources>
