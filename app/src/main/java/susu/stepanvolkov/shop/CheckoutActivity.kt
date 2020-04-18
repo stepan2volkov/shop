@@ -26,10 +26,10 @@ class CheckoutActivity : AppCompatActivity(), CheckoutView {
 
     private fun setListeners() {
         firstName.addTextChangedListener(getNameWatcher(firstName))
-        lastName.addTextChangedListener(getNameWatcher(firstName))
-        middleName.addTextChangedListener(getNameWatcher(firstName))
+        lastName.addTextChangedListener(getNameWatcher(lastName))
+        middleName.addTextChangedListener(getNameWatcher(middleName))
 
-        phone.onFocusChangeListener = View.OnFocusChangeListener{v, hasFocus ->
+        phone.onFocusChangeListener = View.OnFocusChangeListener{_, hasFocus ->
             if(!hasFocus) {
                 val hasError = presenter.validatePhoneNumber(phone.text.toString())
                 phone.showError(hasError)
@@ -69,7 +69,7 @@ class CheckoutActivity : AppCompatActivity(), CheckoutView {
     /**
      * @return formatted price. For example, "1001.50 Р" or "7500 Р".
      * */
-    fun format(price: Double): String {
+    private fun format(price: Double): String {
         val roundedPrice = (100*price).roundToInt()/100.0
 
         val formatString = if (roundedPrice % 1 > 0) "%.2f Р" else "%.0f Р"

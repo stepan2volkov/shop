@@ -28,13 +28,13 @@ class CheckoutPresenter(): MvpPresenter<CheckoutView>() {
     }
 
     /**
-     * @return [true] if name is valid.
+     * @return [true] if name is invalid.
      */
     fun validateNameError(name: String): Boolean = (name.length < 2)
 
     fun validatePhoneNumber(phone: String): Boolean {
         val number = if (phone[0]=='+') phone.substring(1) else phone
 
-        return number.isDigitsOnly() and (number.length==11)
+        return !number.isDigitsOnly() or (number.length!=11)
     }
 }
