@@ -13,13 +13,13 @@ class CheckoutPresenter(): MvpPresenter<CheckoutView>() {
      */
     fun calcTotalDiscountPrice() {
         val totalPrice = products.sumByDouble { product -> product.calcPriceWithDiscount() }
-        viewState.format(totalPrice)
+        viewState.showPriceWithDiscount(totalPrice)
     }
 
 
     fun calcTotalPrice() {
         val totalPrice = products.sumByDouble { product -> product.getPrice() }
-        viewState.format(totalPrice)
+        viewState.showTotalPrice(totalPrice)
     }
 
     fun calcDiscount() {
