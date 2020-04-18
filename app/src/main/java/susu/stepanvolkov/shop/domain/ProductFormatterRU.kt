@@ -1,9 +1,9 @@
 package susu.stepanvolkov.shop.domain
 
-import susu.stepanvolkov.shop.CartView
+import susu.stepanvolkov.shop.CartPresenter
 import kotlin.math.roundToInt
 
-class ProductFormatterRU: CartView.ProductFormatter {
+class ProductFormatterRU: CartPresenter.ProductFormatter {
     override fun format(price: Double): String {
         val roundedPrice = (100*price).roundToInt()/100.0
 
@@ -13,7 +13,10 @@ class ProductFormatterRU: CartView.ProductFormatter {
     }
 
     override fun print(products: List<Product>) {
-        products.forEach { p -> println(format(p.calcDiscountPrice())) }
+        products.forEach { p ->
+            val price = p.calcDiscountPrice()
+            println("${p.getName()}: ${format(price)}")
+        }
     }
 
 

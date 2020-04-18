@@ -10,4 +10,16 @@ class Product (
     fun calcDiscountPrice(): Double = price * (1 - salePercent / 100.0)
 
     fun getName(): String = name
+
+    companion object {
+        /**
+         * @return list of products. Test implementation yet.
+         */
+        fun getProducts(): List<Product> {
+            val iphone = Product("iPhone", 73000.0,7)
+            val samsung = Product("Samsung", 54000.0,13)
+
+            return listOf(iphone, samsung)
+        }
+    }
 }
