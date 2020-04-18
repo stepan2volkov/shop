@@ -6,7 +6,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
-import androidx.core.widget.addTextChangedListener
 import kotlinx.android.synthetic.main.activity_checkout.*
 import kotlin.math.roundToInt
 
@@ -31,8 +30,8 @@ class CheckoutActivity : AppCompatActivity(), CheckoutView {
 
         phone.onFocusChangeListener = View.OnFocusChangeListener{_, hasFocus ->
             if(!hasFocus) {
-                val hasError = presenter.validatePhoneNumber(phone.text.toString())
-                phone.showError(hasError)
+                val valid = presenter.checkNumber(phone.text.toString())
+                phone.showError(!valid)
             }
         }
     }
@@ -49,8 +48,8 @@ class CheckoutActivity : AppCompatActivity(), CheckoutView {
         priceWithDiscount.text = format(price)
     }
 
-    fun EditText.showError(hasError: Boolean) {
-        val drawable = if (hasError) R.drawable.ic_error else 0;
+    fun EditText.showError(invalid: Boolean) {
+        val drawable = if (invalid) R.drawable.ic_error else 0;
         this.setCompoundDrawablesWithIntrinsicBounds(0,0,drawable, 0)
     }
 
@@ -58,8 +57,8 @@ class CheckoutActivity : AppCompatActivity(), CheckoutView {
     private fun getNameWatcher(editText: EditText): TextWatcher {
         return object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                val hasError = presenter.validateNameError(s.toString())
-                editText.showError(hasError)
+                val valid = presenter.checkName(s.toString())
+                editText.showError(!valid)
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
