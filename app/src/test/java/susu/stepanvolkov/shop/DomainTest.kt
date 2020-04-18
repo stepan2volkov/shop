@@ -3,8 +3,7 @@ package susu.stepanvolkov.shop
 import org.junit.Test
 
 import org.junit.Assert.*
-import susu.stepanvolkov.shop.domain.Cart
-import susu.stepanvolkov.shop.domain.PriceFormatterRU
+import susu.stepanvolkov.shop.domain.ProductFormatterRU
 import susu.stepanvolkov.shop.domain.Product
 
 class DomainTest {
@@ -19,7 +18,7 @@ class DomainTest {
 
     @Test
     fun priceFormatterRU() {
-        val formatter: Cart.PriceFormatter = PriceFormatterRU()
+        val formatter: CartView.ProductFormatter = ProductFormatterRU()
         assertEquals("123,01Р", formatter.format(123.01))
         assertEquals("100Р", formatter.format(100.001))
         assertEquals("100,99Р", formatter.format(100.99))
@@ -33,11 +32,11 @@ class DomainTest {
         val microwave = Product(4000.0)
         val list = listOf(smartphone, notebook, microwave)
 
-        val cart = Cart(list)
+        val cart = CartView(list)
         val totalPrice = 45000.0*0.95+104000.0*0.93+4000.0
         val totalFormattedPrice = "%.0fР".format(totalPrice)
         assertEquals("Total Price in Cart",
-            totalFormattedPrice, cart.getTotalPrice(PriceFormatterRU()))
+            totalFormattedPrice, cart.getTotalPrice(ProductFormatterRU()))
     }
 
     @Test
@@ -47,8 +46,8 @@ class DomainTest {
         val microwave = Product(4000.0)
         val list = listOf(smartphone, notebook, microwave)
 
-        val cart = Cart(list)
-        val formatter: Cart.PriceFormatter = PriceFormatterRU()
+        val cart = CartView(list)
+        val formatter: CartView.ProductFormatter = ProductFormatterRU()
         cart.printProducts(formatter)
     }
 }
