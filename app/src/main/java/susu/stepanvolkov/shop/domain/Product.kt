@@ -7,7 +7,7 @@ class Product (
     /**
      * @return price with applied discount determined by [salePercent]
      */
-    fun calcDiscountPrice(): Double = price * (1 - salePercent / 100.0)
+    fun calcPriceWithDiscount(): Double = price * (1 - salePercent / 100.0)
 
     fun getName(): String = name
 

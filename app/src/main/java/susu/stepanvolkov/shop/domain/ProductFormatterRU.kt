@@ -14,7 +14,7 @@ class ProductFormatterRU: CartPresenter.ProductFormatter {
 
     override fun print(products: List<Product>) {
         products.forEach { p ->
-            val price = p.calcDiscountPrice()
+            val price = p.calcPriceWithDiscount()
             println("${p.getName()}: ${format(price)}")
         }
     }
