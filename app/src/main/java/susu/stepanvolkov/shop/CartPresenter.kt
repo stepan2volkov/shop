@@ -18,9 +18,19 @@ class CartPresenter (
     /**
      * @return formatted total price of [products] in Cart with applied discount
      */
-    fun getTotalPrice(): String {
+    fun getTotalDiscountPrice(): String {
         val totalPrice = products.sumByDouble { product -> product.calcPriceWithDiscount() }
         return formatter.format(totalPrice)
+    }
+
+    fun getTotalPrice(): String {
+        val totalPrice = products.sumByDouble { product -> product.getPrice() }
+        return formatter.format(totalPrice)
+    }
+
+    fun getDiscount(): String {
+        val totalDiscount = products.sumByDouble { product -> product.calcDiscount() }
+        return formatter.format(totalDiscount)
     }
 
     fun printProducts() = formatter.print(products)

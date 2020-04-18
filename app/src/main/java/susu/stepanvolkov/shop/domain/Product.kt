@@ -13,6 +13,8 @@ class Product (
 
     fun getName(): String = name
 
+    fun getPrice(): Double = price
+
     companion object {
         /**
          * @return list of products. Test implementation yet.

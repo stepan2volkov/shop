@@ -18,7 +18,7 @@ class CartPresenterTest {
         val totalPrice = 45000.0*0.95+104000.0*0.93+4000.0
         val totalFormattedPrice = "%.0fР".format(totalPrice)
         assertEquals("Total Price in Cart",
-            totalFormattedPrice, cart.getTotalPrice())
+            totalFormattedPrice, cart.getTotalDiscountPrice())
     }
 
     @Test
@@ -30,6 +30,6 @@ class CartPresenterTest {
 
         val cart = CartPresenter(products = list)
         cart.printProducts()
-        println(cart.getTotalPrice())
+        println(cart.getTotalDiscountPrice())
     }
 }
