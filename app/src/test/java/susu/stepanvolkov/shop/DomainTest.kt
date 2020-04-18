@@ -24,31 +24,4 @@ class DomainTest {
         assertEquals("100,99Р", formatter.format(100.99))
         assertEquals("101Р", formatter.format(100.995))
     }
-
-    @Test
-    fun calcTotalPriceInCart() {
-        val cartPresenter = CartPresenter()
-        val smartphone = Product(45000.0, 5)
-        val notebook = Product(104000.0, 7)
-        val microwave = Product(4000.0)
-        val list = listOf(smartphone, notebook, microwave)
-
-        val cart = CartPresenter(list)
-        val totalPrice = 45000.0*0.95+104000.0*0.93+4000.0
-        val totalFormattedPrice = "%.0fР".format(totalPrice)
-        assertEquals("Total Price in Cart",
-            totalFormattedPrice, cart.getTotalPrice(ProductFormatterRU()))
-    }
-
-    @Test
-    fun printProductsPriceInCart() {
-        val smartphone = Product(45000.0, 5)
-        val notebook = Product(104000.0, 7)
-        val microwave = Product(4000.0)
-        val list = listOf(smartphone, notebook, microwave)
-
-        val cart = CartView(list)
-        val formatter: CartView.ProductFormatter = ProductFormatterRU()
-        cart.printProducts(formatter)
-    }
 }
