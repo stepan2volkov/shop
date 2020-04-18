@@ -15,40 +15,19 @@ class CheckoutActivity : AppCompatActivity(), CheckoutView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_checkout)
-
+        presenter.attachView(this)
         presenter.calcTotalPrice()
         presenter.calcDiscount()
         presenter.calcTotalDiscountPrice()
+
+        setListeners()
     }
 
     private fun setListeners() {
-        firstName.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                val hasError = presenter.validateNameError(s.toString())
-                firstName.showError(hasError)
-            }
+        firstName.addTextChangedListener(getNameWatcher(firstName))
+        lastName.addTextChangedListener(getNameWatcher(firstName))
+        middleName.addTextChangedListener(getNameWatcher(firstName))
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        })
-        lastName.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                val hasError = presenter.validateNameError(s.toString())
-                lastName.showError(hasError)
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        })
-        middleName.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                val hasError = presenter.validateNameError(s.toString())
-                middleName.showError(hasError)
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        })
         phone.onFocusChangeListener = View.OnFocusChangeListener{v, hasFocus ->
             if(!hasFocus) {
                 val hasError = presenter.validatePhoneNumber(phone.text.toString())
@@ -72,5 +51,18 @@ class CheckoutActivity : AppCompatActivity(), CheckoutView {
     fun EditText.showError(hasError: Boolean) {
         val drawable = if (hasError) R.drawable.ic_error else 0;
         this.setCompoundDrawablesWithIntrinsicBounds(0,0,drawable, 0)
+    }
+
+    /* return TextChangedListener for name fields */
+    private fun getNameWatcher(editText: EditText): TextWatcher {
+        return object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val hasError = presenter.validateNameError(s.toString())
+                editText.showError(hasError)
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        }
     }
 }

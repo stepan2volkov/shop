@@ -4,7 +4,7 @@ import androidx.core.text.isDigitsOnly
 import moxy.MvpPresenter
 
 
-class CheckoutPresenter: MvpPresenter<CheckoutView>() {
+class CheckoutPresenter(): MvpPresenter<CheckoutView>() {
 
     private val products: List<Product> = Product.getProducts()
 
