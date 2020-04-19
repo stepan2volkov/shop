@@ -19,7 +19,7 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)
 
-        toolbar.headerText.text = getString(R.string.checkout_header)
+        toolbar.headerText.text = ""
         toolbar.headerBackBtn.setOnClickListener{ finish() }
         toolbar.shoppingCartBtn.visibility = View.GONE
 
