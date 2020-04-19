@@ -8,8 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
 import susu.stepanvolkov.shop.R
+import susu.stepanvolkov.shop.presenter.CartPresenter
+import susu.stepanvolkov.shop.view.CartView
 
-class CartActivity : AppCompatActivity() {
+class CartActivity : AppCompatActivity(), CartView {
+
+    private val presenter = CartPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,9 +23,24 @@ class CartActivity : AppCompatActivity() {
         toolbar.headerBackBtn.setOnClickListener{ finish() }
         toolbar.shoppingCartBtn.visibility = View.GONE
 
+        presenter.attachView(this)
+        presenter.showCartTotals()
+
         checkoutOrderBtn.setOnClickListener{
             val intent = Intent(this, CheckoutActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun showTotalPrice(price: String) {
+        fullPrice.text = price
+    }
+
+    override fun showDiscount(discountPrice: String) {
+        discount.text = discountPrice
+    }
+
+    override fun showPriceWithDiscount(price: String) {
+        priceWithDiscount.text = price
     }
 }

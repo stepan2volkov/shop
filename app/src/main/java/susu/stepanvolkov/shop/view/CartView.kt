@@ -5,7 +5,7 @@ import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(AddToEndSingleStrategy::class)
-interface CheckoutView: MvpView {
+interface CartView: MvpView {
 
     /* Cart information methods */
     fun showTotalPrice(price: String)
