@@ -1,4 +1,4 @@
-package susu.stepanvolkov.shop
+package susu.stepanvolkov.shop.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,20 +6,29 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
-import androidx.core.widget.addTextChangedListener
 import kotlinx.android.synthetic.main.activity_checkout.*
+import kotlinx.android.synthetic.main.toolbar_layout.view.*
+import susu.stepanvolkov.shop.CheckoutPresenter
+import susu.stepanvolkov.shop.CheckoutView
+import susu.stepanvolkov.shop.R
 import kotlin.math.roundToInt
 
-class CheckoutActivity : AppCompatActivity(), CheckoutView {
+class CheckoutActivity : AppCompatActivity(),
+    CheckoutView {
     private val presenter = CheckoutPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_checkout)
+
+        toolbar.headerText.text = getString(R.string.checkout_header)
+        toolbar.headerBackBtn.setOnClickListener{ finish() }
+        toolbar.shoppingCartBtn.visibility = View.GONE
+
         presenter.attachView(this)
         presenter.calcTotalPrice()
         presenter.calcDiscount()
-        presenter.calcTotalDiscountPrice()
+        presenter.calcPriceWithDiscount()
 
         setListeners()
     }
@@ -31,8 +40,8 @@ class CheckoutActivity : AppCompatActivity(), CheckoutView {
 
         phone.onFocusChangeListener = View.OnFocusChangeListener{_, hasFocus ->
             if(!hasFocus) {
-                val hasError = presenter.validatePhoneNumber(phone.text.toString())
-                phone.showError(hasError)
+                val valid = presenter.checkNumber(phone.text.toString())
+                phone.showError(!valid)
             }
         }
     }
@@ -42,15 +51,15 @@ class CheckoutActivity : AppCompatActivity(), CheckoutView {
     }
 
     override fun showDiscount(discountPrice: Double) {
-        discount.text = format(discountPrice)
+        discount.text = format(-discountPrice)
     }
 
     override fun showPriceWithDiscount(price: Double) {
         priceWithDiscount.text = format(price)
     }
 
-    fun EditText.showError(hasError: Boolean) {
-        val drawable = if (hasError) R.drawable.ic_error else 0;
+    fun EditText.showError(invalid: Boolean) {
+        val drawable = if (invalid) R.drawable.ic_error else 0;
         this.setCompoundDrawablesWithIntrinsicBounds(0,0,drawable, 0)
     }
 
@@ -58,8 +67,8 @@ class CheckoutActivity : AppCompatActivity(), CheckoutView {
     private fun getNameWatcher(editText: EditText): TextWatcher {
         return object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                val hasError = presenter.validateNameError(s.toString())
-                editText.showError(hasError)
+                val valid = presenter.checkName(s.toString())
+                editText.showError(!valid)
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
