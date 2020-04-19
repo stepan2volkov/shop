@@ -1,30 +1,34 @@
-package susu.stepanvolkov.shop
+package susu.stepanvolkov.shop.presenters
 
 import androidx.core.text.isDigitsOnly
 import moxy.MvpPresenter
+import susu.stepanvolkov.shop.views.CheckoutView
+import susu.stepanvolkov.shop.Product
+import susu.stepanvolkov.shop.Repository
 
 
-class CheckoutPresenter(): MvpPresenter<CheckoutView>() {
+class CheckoutPresenter: MvpPresenter<CheckoutView>() {
 
-    private val products: List<Product> = Product.getProducts()
+    private val products: List<Product> =
+        Repository.getProducts()
 
     /**
      * @return formatted total price of [products] in Cart with applied discount
      */
     fun calcPriceWithDiscount() {
         val priceWithDiscount = products.sumByDouble { product -> product.calcPriceWithDiscount() }
-        viewState.showPriceWithDiscount(priceWithDiscount)
+        viewState.showPriceWithDiscount(Product.format(priceWithDiscount))
     }
 
 
     fun calcTotalPrice() {
         val totalPrice = products.sumByDouble { product -> product.getPrice() }
-        viewState.showTotalPrice(totalPrice)
+        viewState.showTotalPrice(Product.format(totalPrice))
     }
 
     fun calcDiscount() {
         val totalDiscount = products.sumByDouble { product -> product.calcDiscount() }
-        viewState.showDiscount(totalDiscount)
+        viewState.showDiscount(Product.format(-totalDiscount))
     }
 
     /**

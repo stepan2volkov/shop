@@ -31,9 +31,14 @@ class CatalogActivity : AppCompatActivity() {
         }
         /* Переход к экрану с детальной информацией о продукте */
         testBtn.setOnClickListener{
-            // TODO: Передавать ID товара в Activity
-            val intent = Intent(this, ProductDetailActivity::class.java)
+            val intent = Intent(this, ProductDetailActivity::class.java).apply {
+                putExtra(PRODUCT_ID, 1)
+            }
             startActivity(intent)
         }
+    }
+
+    companion object {
+        const val PRODUCT_ID = "PRODUCT_ID"
     }
 }

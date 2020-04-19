@@ -1,4 +1,4 @@
-package susu.stepanvolkov.shop
+package susu.stepanvolkov.shop.views
 
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
@@ -8,7 +8,7 @@ import moxy.viewstate.strategy.StateStrategyType
 interface CheckoutView: MvpView {
 
     /* Cart information methods */
-    fun showTotalPrice(price: Double)
-    fun showDiscount(discountPrice: Double)
-    fun showPriceWithDiscount(price: Double)
+    fun showTotalPrice(price: String)
+    fun showDiscount(discountPrice: String)
+    fun showPriceWithDiscount(price: String)
 }

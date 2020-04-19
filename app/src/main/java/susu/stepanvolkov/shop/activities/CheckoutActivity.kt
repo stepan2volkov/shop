@@ -8,13 +8,13 @@ import android.view.View
 import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_checkout.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
-import susu.stepanvolkov.shop.CheckoutPresenter
-import susu.stepanvolkov.shop.CheckoutView
+import susu.stepanvolkov.shop.presenters.CheckoutPresenter
+import susu.stepanvolkov.shop.views.CheckoutView
 import susu.stepanvolkov.shop.R
 import kotlin.math.roundToInt
 
-class CheckoutActivity : AppCompatActivity(),
-    CheckoutView {
+class CheckoutActivity : AppCompatActivity(), CheckoutView {
+
     private val presenter = CheckoutPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,16 +46,16 @@ class CheckoutActivity : AppCompatActivity(),
         }
     }
 
-    override fun showTotalPrice(price: Double) {
-        fullPrice.text = format(price)
+    override fun showTotalPrice(price: String) {
+        fullPrice.text = price
     }
 
-    override fun showDiscount(discountPrice: Double) {
-        discount.text = format(-discountPrice)
+    override fun showDiscount(discountPrice: String) {
+        discount.text = discountPrice
     }
 
-    override fun showPriceWithDiscount(price: Double) {
-        priceWithDiscount.text = format(price)
+    override fun showPriceWithDiscount(price: String) {
+        priceWithDiscount.text = price
     }
 
     fun EditText.showError(invalid: Boolean) {
@@ -74,14 +74,5 @@ class CheckoutActivity : AppCompatActivity(),
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         }
-    }
-    /**
-     * @return formatted price. For example, "1001.50 Р" or "7500 Р".
-     * */
-    private fun format(price: Double): String {
-        val roundedPrice = (100*price).roundToInt()/100.0
-
-        val formatString = if (roundedPrice % 1 > 0) "%.2f Р" else "%.0f Р"
-        return formatString.format(roundedPrice)
     }
 }
