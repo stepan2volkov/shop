@@ -18,6 +18,8 @@ class CatalogActivity : AppCompatActivity() {
         /* Toolbar initialization */
         toolbar.headerText.text = getString(R.string.catalog_header)
         toolbar.headerBackBtn.visibility = View.GONE
+
+        setListeners()
     }
 
     private fun setListeners() {
@@ -29,6 +31,7 @@ class CatalogActivity : AppCompatActivity() {
         }
         /* Переход к экрану с детальной информацией о продукте */
         testBtn.setOnClickListener{
+            // TODO: Передавать ID товара в Activity
             val intent = Intent(this, ProductDetailActivity::class.java)
             startActivity(intent)
         }
