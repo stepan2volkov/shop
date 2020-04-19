@@ -16,4 +16,5 @@
     <string name="checkout_order">Оформить заказ</string>
     <string name="phone_example">Пример, 89999999999 или +79999999999</string>
     <string name="back_description">Назад</string>
+    <string name="catalog_header">Каталог</string>
 </resources>

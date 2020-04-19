@@ -1,4 +1,4 @@
-package susu.stepanvolkov.shop
+package susu.stepanvolkov.shop.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,9 +8,13 @@ import android.view.View
 import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_checkout.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
+import susu.stepanvolkov.shop.CheckoutPresenter
+import susu.stepanvolkov.shop.CheckoutView
+import susu.stepanvolkov.shop.R
 import kotlin.math.roundToInt
 
-class CheckoutActivity : AppCompatActivity(), CheckoutView {
+class CheckoutActivity : AppCompatActivity(),
+    CheckoutView {
     private val presenter = CheckoutPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
