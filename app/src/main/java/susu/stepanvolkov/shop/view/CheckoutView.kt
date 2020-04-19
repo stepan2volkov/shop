@@ -1,4 +1,4 @@
-package susu.stepanvolkov.shop.views
+package susu.stepanvolkov.shop.view
 
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy

@@ -1,4 +1,4 @@
-package susu.stepanvolkov.shop.activities
+package susu.stepanvolkov.shop.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,8 +8,8 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
 import susu.stepanvolkov.shop.R
-import susu.stepanvolkov.shop.presenters.ProductDetailPresenter
-import susu.stepanvolkov.shop.views.ProductDetailView
+import susu.stepanvolkov.shop.presenter.ProductDetailPresenter
+import susu.stepanvolkov.shop.view.ProductDetailView
 
 class ProductDetailActivity : AppCompatActivity(), ProductDetailView {
 

@@ -1,10 +1,10 @@
-package susu.stepanvolkov.shop.presenters
+package susu.stepanvolkov.shop.presenter
 
 import androidx.core.text.isDigitsOnly
 import moxy.MvpPresenter
-import susu.stepanvolkov.shop.views.CheckoutView
-import susu.stepanvolkov.shop.Product
-import susu.stepanvolkov.shop.Repository
+import susu.stepanvolkov.shop.view.CheckoutView
+import susu.stepanvolkov.shop.model.Product
+import susu.stepanvolkov.shop.model.Repository
 
 
 class CheckoutPresenter: MvpPresenter<CheckoutView>() {

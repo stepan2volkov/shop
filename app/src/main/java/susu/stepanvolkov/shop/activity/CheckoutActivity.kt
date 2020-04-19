@@ -1,4 +1,4 @@
-package susu.stepanvolkov.shop.activities
+package susu.stepanvolkov.shop.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,10 +8,9 @@ import android.view.View
 import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_checkout.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
-import susu.stepanvolkov.shop.presenters.CheckoutPresenter
-import susu.stepanvolkov.shop.views.CheckoutView
+import susu.stepanvolkov.shop.presenter.CheckoutPresenter
+import susu.stepanvolkov.shop.view.CheckoutView
 import susu.stepanvolkov.shop.R
-import kotlin.math.roundToInt
 
 class CheckoutActivity : AppCompatActivity(), CheckoutView {
 

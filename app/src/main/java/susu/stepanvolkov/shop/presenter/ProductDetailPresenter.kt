@@ -1,13 +1,9 @@
-package susu.stepanvolkov.shop.presenters
+package susu.stepanvolkov.shop.presenter
 
-import android.text.Html
-import android.text.SpannableStringBuilder
-import android.text.style.StrikethroughSpan
 import moxy.MvpPresenter
-import susu.stepanvolkov.shop.Product
-import susu.stepanvolkov.shop.Repository
-import susu.stepanvolkov.shop.views.ProductDetailView
-import java.lang.StringBuilder
+import susu.stepanvolkov.shop.model.Product
+import susu.stepanvolkov.shop.model.Repository
+import susu.stepanvolkov.shop.view.ProductDetailView
 
 class ProductDetailPresenter: MvpPresenter<ProductDetailView>() {
 
