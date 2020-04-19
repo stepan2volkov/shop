@@ -1,5 +1,6 @@
 package susu.stepanvolkov.shop.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -20,13 +21,16 @@ class CatalogActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
-        /* Нажатие на знакок корзины */
+        /* Нажатие на значок корзины */
         toolbar.shoppingCartBtn.setOnClickListener{
             // TODO: Переход к CartActivity
+            val intent = Intent(this, CheckoutActivity::class.java)
+            startActivity(intent)
         }
         /* Переход к экрану с детальной информацией о продукте */
         testBtn.setOnClickListener{
-            // TODO: Переход к ProductDetailActivity
+            val intent = Intent(this, ProductDetailActivity::class.java)
+            startActivity(intent)
         }
     }
 }

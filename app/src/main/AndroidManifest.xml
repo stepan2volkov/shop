@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.ProductDetailActivity"></activity>
-        <activity android:name=".activities.CheckoutActivity">
+        <activity android:name=".activities.CheckoutActivity"></activity>
+        <activity android:name=".activities.CatalogActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

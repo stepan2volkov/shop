@@ -15,6 +15,6 @@ class ProductDetailActivity : AppCompatActivity() {
 
         toolbar.headerText.text = getString(R.string.checkout_header)
         toolbar.headerBackBtn.setOnClickListener{ finish() }
-        toolbar.shoppingCartBtn.visibility = View.GONE
+//        toolbar.shoppingCartBtn.visibility = View.GONE
     }
 }
