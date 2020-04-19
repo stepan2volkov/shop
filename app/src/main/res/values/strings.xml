@@ -17,4 +17,6 @@
     <string name="phone_example">Пример, 89999999999 или +79999999999</string>
     <string name="back_description">Назад</string>
     <string name="catalog_header">Каталог</string>
+    <string name="description_header">Описание</string>
+    <string name="add_to_cart">Добавить</string>
 </resources>

@@ -243,7 +243,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@color/checkout_btn"
+                android:background="@color/colorAccent"
                 android:text="@string/checkout_order"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
