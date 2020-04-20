@@ -1,4 +1,4 @@
-package susu.stepanvolkov.shop
+package susu.stepanvolkov.shop.model
 
 import kotlin.math.roundToInt
 

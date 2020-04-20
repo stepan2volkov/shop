@@ -3,6 +3,7 @@ package susu.stepanvolkov.shop
 import org.junit.Test
 
 import org.junit.Assert.*
+import susu.stepanvolkov.shop.model.Product
 
 class DomainTest {
 

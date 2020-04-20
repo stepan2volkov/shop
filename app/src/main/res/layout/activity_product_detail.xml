@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_background"
-    tools:context=".activities.ProductDetailActivity">
+    tools:context=".activity.ProductDetailActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -97,7 +97,7 @@
                 android:id="@+id/descHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:background="@color/white"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"

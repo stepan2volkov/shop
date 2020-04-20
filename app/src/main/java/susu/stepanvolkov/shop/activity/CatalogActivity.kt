@@ -1,4 +1,4 @@
-package susu.stepanvolkov.shop.activities
+package susu.stepanvolkov.shop.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -26,7 +26,7 @@ class CatalogActivity : AppCompatActivity() {
         /* Нажатие на значок корзины */
         toolbar.shoppingCartBtn.setOnClickListener{
             // TODO: Переход к CartActivity
-            val intent = Intent(this, CheckoutActivity::class.java)
+            val intent = Intent(this, CartActivity::class.java)
             startActivity(intent)
         }
         /* Переход к экрану с детальной информацией о продукте */
