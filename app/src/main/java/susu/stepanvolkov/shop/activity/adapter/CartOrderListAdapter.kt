@@ -42,7 +42,7 @@ class CartOrderListAdapter(
             } else {
                 val sp = SpannableStringBuilder("$price $priceWithDiscount")
                 sp.setSpan(StrikethroughSpan(), 0, price.length, SpannableStringBuilder.SPAN_EXCLUSIVE_EXCLUSIVE)
-                sp.toString()
+                sp
             }
 
             itemView.cartItemDropBtn.setOnClickListener{ onDropItemClick(p) }

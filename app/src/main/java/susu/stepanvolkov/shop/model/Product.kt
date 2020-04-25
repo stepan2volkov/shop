@@ -20,8 +20,6 @@ class Product (
 
     fun getPrice(): Double = price
 
-    fun getSalePercent(): Int = salePercent
-
     companion object{
         /**
          * @return formatted price. For example, "1001.50 Р" or "7500 Р".
