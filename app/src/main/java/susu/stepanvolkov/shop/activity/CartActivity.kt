@@ -34,6 +34,10 @@ class CartActivity : AppCompatActivity(), CartView {
             startActivity(intent)
         }
 
+        testBtn.setOnClickListener{
+            val p = Product(id=12, name="Test", price = 78999.0, salePercent = 13)
+        }
+
         orderList.layoutManager = LinearLayoutManager(this)
         orderList.adapter = adapter
 
