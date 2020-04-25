@@ -12,7 +12,7 @@ class Repository {
         private val huawei =
             Product(2, "Huawei", 34000.0, 17)
 
-        private val products = listOf(
+        private val products = mutableListOf(
             iphone,
             samsung,
             huawei
@@ -25,7 +25,7 @@ class Repository {
             return emptyProduct
         }
 
-        fun getProducts(): List<Product> {
+        fun getProducts(): MutableList<Product> {
             return products
         }
 

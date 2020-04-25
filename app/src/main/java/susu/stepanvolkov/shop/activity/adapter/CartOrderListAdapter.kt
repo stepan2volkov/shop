@@ -11,9 +11,15 @@ import susu.stepanvolkov.shop.R
 import susu.stepanvolkov.shop.model.Product
 
 class CartOrderListAdapter(
-    private val products: List<Product>,
     private val onDropItemClick: (p: Product) -> Unit
 ): RecyclerView.Adapter<CartOrderListAdapter.ViewHolder>() {
+
+    private var products: List<Product> = listOf()
+
+    fun setData(products: List<Product>) {
+        this.products = products
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartOrderListAdapter.ViewHolder =
         ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_cart_product, parent, false))
@@ -30,18 +36,16 @@ class CartOrderListAdapter(
             itemView.productName.text = p.getName()
             val price = Product.format(p.getPrice())
             val priceWithDiscount = Product.format(p.calcPriceWithDiscount())
-            val fmtPrice: String
 
-            if (price==priceWithDiscount) {
-                fmtPrice = price
+            itemView.productPrice.text = if (price==priceWithDiscount) {
+                price
             } else {
                 val sp = SpannableStringBuilder("$price $priceWithDiscount")
                 sp.setSpan(StrikethroughSpan(), 0, price.length, SpannableStringBuilder.SPAN_EXCLUSIVE_EXCLUSIVE)
-                fmtPrice = sp.toString()
+                sp.toString()
             }
 
-            itemView.productPrice.text = fmtPrice
-            itemView.cartItemDropBtn.setOnClickListener{ onDropItemClick }
+            itemView.cartItemDropBtn.setOnClickListener{ onDropItemClick(p) }
         }
     }
 

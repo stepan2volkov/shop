@@ -2,12 +2,12 @@ package susu.stepanvolkov.shop.presenter
 
 import androidx.core.text.isDigitsOnly
 import moxy.MvpPresenter
-import susu.stepanvolkov.shop.presenter.view.CartView
 import susu.stepanvolkov.shop.model.Product
 import susu.stepanvolkov.shop.model.Repository
+import susu.stepanvolkov.shop.presenter.view.CheckoutView
 
 
-class CheckoutPresenter: MvpPresenter<CartView>() {
+class CheckoutPresenter: MvpPresenter<CheckoutView>() {
 
     private val products: List<Product> =
         Repository.getProducts()

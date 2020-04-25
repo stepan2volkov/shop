@@ -10,12 +10,14 @@ import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
 import susu.stepanvolkov.shop.R
 import susu.stepanvolkov.shop.activity.adapter.CartOrderListAdapter
+import susu.stepanvolkov.shop.model.Product
 import susu.stepanvolkov.shop.presenter.CartPresenter
 import susu.stepanvolkov.shop.presenter.view.CartView
 
 class CartActivity : AppCompatActivity(), CartView {
 
     private val presenter = CartPresenter()
+    private val adapter = CartOrderListAdapter { p -> presenter.removeItem(p) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +28,7 @@ class CartActivity : AppCompatActivity(), CartView {
         toolbar.shoppingCartBtn.visibility = View.GONE
 
         presenter.attachView(this)
-        presenter.showCartTotals()
+        presenter.setData()
 
         checkoutOrderBtn.setOnClickListener{
             val intent = Intent(this, CheckoutActivity::class.java)
@@ -34,7 +36,7 @@ class CartActivity : AppCompatActivity(), CartView {
         }
 
         orderList.layoutManager = LinearLayoutManager(this)
-        orderList.adapter = CartOrderListAdapter(presenter.getProducts())
+        orderList.adapter = adapter
     }
 
     override fun showTotalPrice(price: String) {
@@ -47,5 +49,13 @@ class CartActivity : AppCompatActivity(), CartView {
 
     override fun showPriceWithDiscount(price: String) {
         priceWithDiscount.text = price
+    }
+
+    override fun setProducts(products: MutableList<Product>) {
+        adapter.setData(products)
+    }
+
+    override fun removeItem(position: Int) {
+        adapter.notifyItemRemoved(position)
     }
 }
