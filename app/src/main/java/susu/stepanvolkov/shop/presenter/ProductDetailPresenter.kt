@@ -3,7 +3,7 @@ package susu.stepanvolkov.shop.presenter
 import moxy.MvpPresenter
 import susu.stepanvolkov.shop.model.Product
 import susu.stepanvolkov.shop.model.Repository
-import susu.stepanvolkov.shop.view.ProductDetailView
+import susu.stepanvolkov.shop.presenter.view.ProductDetailView
 
 class ProductDetailPresenter: MvpPresenter<ProductDetailView>() {
 

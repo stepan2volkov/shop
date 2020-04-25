@@ -2,7 +2,7 @@ package susu.stepanvolkov.shop.presenter
 
 import androidx.core.text.isDigitsOnly
 import moxy.MvpPresenter
-import susu.stepanvolkov.shop.view.CartView
+import susu.stepanvolkov.shop.presenter.view.CartView
 import susu.stepanvolkov.shop.model.Product
 import susu.stepanvolkov.shop.model.Repository
 

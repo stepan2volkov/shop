@@ -5,11 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
 import susu.stepanvolkov.shop.R
 import susu.stepanvolkov.shop.presenter.CartPresenter
-import susu.stepanvolkov.shop.view.CartView
+import susu.stepanvolkov.shop.presenter.view.CartView
 
 class CartActivity : AppCompatActivity(), CartView {
 
@@ -30,6 +31,8 @@ class CartActivity : AppCompatActivity(), CartView {
             val intent = Intent(this, CheckoutActivity::class.java)
             startActivity(intent)
         }
+
+        productList.layoutManager = LinearLayoutManager(this)
     }
 
     override fun showTotalPrice(price: String) {
