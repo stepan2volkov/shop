@@ -22,4 +22,6 @@
     <string name="to_checkout">Оформить</string>
     <string name="good_list_header">Список товаров</string>
     <string name="cart_header">Корзина</string>
+    <string name="img_description">Товар</string>
+    <string name="drop_item">Удалить</string>
 </resources>

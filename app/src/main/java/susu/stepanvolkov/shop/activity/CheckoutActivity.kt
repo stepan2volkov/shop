@@ -8,13 +8,13 @@ import android.view.View
 import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_checkout.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
-import susu.stepanvolkov.shop.presenter.CartPresenter
 import susu.stepanvolkov.shop.presenter.view.CartView
 import susu.stepanvolkov.shop.R
+import susu.stepanvolkov.shop.presenter.CheckoutPresenter
 
 class CheckoutActivity : AppCompatActivity(), CartView {
 
-    private val presenter = CartPresenter()
+    private val presenter = CheckoutPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

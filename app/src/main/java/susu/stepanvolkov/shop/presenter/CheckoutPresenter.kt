@@ -7,7 +7,7 @@ import susu.stepanvolkov.shop.model.Product
 import susu.stepanvolkov.shop.model.Repository
 
 
-class CartPresenter: MvpPresenter<CartView>() {
+class CheckoutPresenter: MvpPresenter<CartView>() {
 
     private val products: List<Product> =
         Repository.getProducts()
