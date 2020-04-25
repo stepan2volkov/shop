@@ -14,4 +14,5 @@ interface CartView: MvpView {
     fun showPriceWithDiscount(price: String)
     fun setProducts(products: MutableList<Product>)
     fun removeItem(position: Int)
+    fun insertItem(position: Int)
 }

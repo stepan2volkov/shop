@@ -28,7 +28,6 @@ class CartActivity : AppCompatActivity(), CartView {
         toolbar.shoppingCartBtn.visibility = View.GONE
 
         presenter.attachView(this)
-        presenter.setData()
 
         checkoutOrderBtn.setOnClickListener{
             val intent = Intent(this, CheckoutActivity::class.java)
@@ -37,6 +36,8 @@ class CartActivity : AppCompatActivity(), CartView {
 
         orderList.layoutManager = LinearLayoutManager(this)
         orderList.adapter = adapter
+
+        presenter.setData()
     }
 
     override fun showTotalPrice(price: String) {
@@ -57,5 +58,9 @@ class CartActivity : AppCompatActivity(), CartView {
 
     override fun removeItem(position: Int) {
         adapter.notifyItemRemoved(position)
+    }
+
+    override fun insertItem(position: Int) {
+        adapter.notifyItemInserted(position)
     }
 }

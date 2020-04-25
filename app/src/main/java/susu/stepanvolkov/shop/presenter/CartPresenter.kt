@@ -20,8 +20,15 @@ class CartPresenter: MvpPresenter<CartView>() {
     fun removeItem(p: Product) {
         val position = products.indexOf(p)
         products.remove(p)
-        showCartTotals()
         viewState.removeItem(position)
+        showCartTotals()
+    }
+
+    fun insertItem(p: Product) {
+        val position = products.size
+        products.add(p)
+        viewState.insertItem(position)
+        showCartTotals()
     }
 
     private fun showCartTotals() {
