@@ -8,13 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
+import moxy.MvpAppCompatActivity
 import susu.stepanvolkov.shop.R
 import susu.stepanvolkov.shop.activity.adapter.CartOrderListAdapter
 import susu.stepanvolkov.shop.model.Product
 import susu.stepanvolkov.shop.presenter.CartPresenter
 import susu.stepanvolkov.shop.presenter.view.CartView
 
-class CartActivity : AppCompatActivity(), CartView {
+class CartActivity : MvpAppCompatActivity(), CartView {
 
     private val presenter = CartPresenter()
     private val adapter = CartOrderListAdapter { p -> presenter.removeItem(p) }

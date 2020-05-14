@@ -8,11 +8,12 @@ import android.view.View
 import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_checkout.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
+import moxy.MvpAppCompatActivity
 import susu.stepanvolkov.shop.R
 import susu.stepanvolkov.shop.presenter.CheckoutPresenter
 import susu.stepanvolkov.shop.presenter.view.CheckoutView
 
-class CheckoutActivity : AppCompatActivity(), CheckoutView {
+class CheckoutActivity : MvpAppCompatActivity(), CheckoutView {
 
     private val presenter = CheckoutPresenter()
 

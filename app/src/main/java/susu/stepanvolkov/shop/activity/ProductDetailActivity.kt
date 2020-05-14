@@ -7,11 +7,12 @@ import android.text.style.StrikethroughSpan
 import android.view.View
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
+import moxy.MvpAppCompatActivity
 import susu.stepanvolkov.shop.R
 import susu.stepanvolkov.shop.presenter.ProductDetailPresenter
 import susu.stepanvolkov.shop.presenter.view.ProductDetailView
 
-class ProductDetailActivity : AppCompatActivity(), ProductDetailView {
+class ProductDetailActivity : MvpAppCompatActivity(), ProductDetailView {
 
     private val presenter = ProductDetailPresenter()
 

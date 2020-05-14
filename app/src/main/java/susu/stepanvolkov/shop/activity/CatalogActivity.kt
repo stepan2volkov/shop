@@ -7,9 +7,12 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_catalog.*
 import kotlinx.android.synthetic.main.activity_checkout.toolbar
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
+import moxy.MvpAppCompatActivity
 import susu.stepanvolkov.shop.R
+import susu.stepanvolkov.shop.model.Product
+import susu.stepanvolkov.shop.presenter.view.CatalogView
 
-class CatalogActivity : AppCompatActivity() {
+class CatalogActivity : MvpAppCompatActivity(), CatalogView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,5 +42,9 @@ class CatalogActivity : AppCompatActivity() {
 
     companion object {
         const val PRODUCT_ID = "PRODUCT_ID"
+    }
+
+    override fun setCatalogList(products: MutableList<Product>) {
+        TODO("Not yet implemented")
     }
 }
