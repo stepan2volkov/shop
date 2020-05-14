@@ -25,7 +25,6 @@ class CatalogActivity : AppCompatActivity() {
     private fun setListeners() {
         /* Нажатие на значок корзины */
         toolbar.shoppingCartBtn.setOnClickListener{
-            // TODO: Переход к CartActivity
             val intent = Intent(this, CartActivity::class.java)
             startActivity(intent)
         }
