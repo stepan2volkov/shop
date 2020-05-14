@@ -9,4 +9,5 @@ interface ProductDetailView: MvpView {
     fun showProductName(name: String)
     fun showProductPrice(price: String, priceWithDiscount: String)
     fun showProductDescription(description: String)
+    fun setImage(url: String)
 }

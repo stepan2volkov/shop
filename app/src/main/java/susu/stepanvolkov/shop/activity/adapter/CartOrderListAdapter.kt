@@ -6,7 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_cart_product.view.*
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.item_product.view.*
 import susu.stepanvolkov.shop.R
 import susu.stepanvolkov.shop.model.Product
 
@@ -22,7 +23,7 @@ class CartOrderListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartOrderListAdapter.ViewHolder =
-        ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_cart_product, parent, false))
+        ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false))
 
     override fun getItemCount(): Int = products.size
 
@@ -33,8 +34,8 @@ class CartOrderListAdapter(
     inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
 
         fun bind(p: Product) {
-            itemView.productName.text = p.getName()
-            val price = Product.format(p.getPrice())
+            itemView.productName.text = p.name
+            val price = Product.format(p.price)
             val priceWithDiscount = Product.format(p.calcPriceWithDiscount())
 
             itemView.productPrice.text = if (price==priceWithDiscount) {
@@ -46,6 +47,7 @@ class CartOrderListAdapter(
             }
 
             itemView.cartItemDropBtn.setOnClickListener{ onDropItemClick(p) }
+            if (p.imageUrl!="") Picasso.get().load(p.imageUrl).into(itemView.productImage)
         }
     }
 

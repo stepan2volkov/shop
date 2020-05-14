@@ -2,23 +2,25 @@ package susu.stepanvolkov.shop.model
 
 import kotlin.math.roundToInt
 
+
 class Product (
-    private val id: Int,
-    private val name: String,
-    private val price: Double,
-    private val salePercent: Int = 0) {
+    val id: Int,
+    val name: String,
+    val price: Double,
+    val discountPercent: Int = 0,
+    val description: String = "",
+    val imageUrl: String = ""
+) {
+
+    constructor(p: RemoteProduct) : this(p.id, p.name, p.price, p.discountPercent, p.description, p.imageUrl )
+
     /**
-     * @return price with applied discount determined by [salePercent]
+     * @return price with applied discount determined by [discountPercent]
      */
-    fun calcPriceWithDiscount(): Double = price * (1 - salePercent / 100.0)
+    fun calcPriceWithDiscount(): Double = price * (1 - discountPercent / 100.0)
 
-    fun calcDiscount(): Double = price * (salePercent / 100.0)
+    fun calcDiscount(): Double = price * (discountPercent / 100.0)
 
-    fun getId(): Int = id
-
-    fun getName(): String = name
-
-    fun getPrice(): Double = price
 
     companion object{
         /**

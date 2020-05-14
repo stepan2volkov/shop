@@ -9,13 +9,15 @@ import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_checkout.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
 import moxy.MvpAppCompatActivity
+import moxy.ktx.moxyPresenter
 import susu.stepanvolkov.shop.R
+import susu.stepanvolkov.shop.model.CartProductDAOImpl
 import susu.stepanvolkov.shop.presenter.CheckoutPresenter
 import susu.stepanvolkov.shop.presenter.view.CheckoutView
 
 class CheckoutActivity : MvpAppCompatActivity(), CheckoutView {
 
-    private val presenter = CheckoutPresenter()
+    private val presenter by moxyPresenter { CheckoutPresenter(CartProductDAOImpl(sharedPreferences)) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

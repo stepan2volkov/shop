@@ -8,4 +8,5 @@ import susu.stepanvolkov.shop.model.Product
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface CatalogView: MvpView {
     fun setCatalogList(products: MutableList<Product>)
+    fun showError(msg: String)
 }

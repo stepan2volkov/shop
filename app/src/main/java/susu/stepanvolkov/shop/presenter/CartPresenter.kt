@@ -1,17 +1,20 @@
 package susu.stepanvolkov.shop.presenter
 
+import android.content.SharedPreferences
 import moxy.InjectViewState
 import moxy.MvpPresenter
+import susu.stepanvolkov.shop.model.CartProductDAO
+import susu.stepanvolkov.shop.model.CartProductDAOImpl
 import susu.stepanvolkov.shop.presenter.view.CartView
 import susu.stepanvolkov.shop.model.Product
 import susu.stepanvolkov.shop.model.Repository
 
 @InjectViewState
-class CartPresenter: MvpPresenter<CartView>() {
+class CartPresenter(
+    private val cart: CartProductDAO
+): BasePresenter<CartView>() {
 
-    private val products: MutableList<Product> =
-        Repository.getProducts()
-
+    private val products: MutableList<Product> = Repository.getProductListByIds(cart.list())
 
     fun setData() {
         viewState.setProducts(products)
@@ -23,6 +26,7 @@ class CartPresenter: MvpPresenter<CartView>() {
         products.remove(p)
         viewState.removeItem(position)
         showCartTotals()
+        cart.remove(p.id)
     }
 
     fun insertItem(p: Product) {
@@ -30,6 +34,7 @@ class CartPresenter: MvpPresenter<CartView>() {
         products.add(p)
         viewState.insertItem(position)
         showCartTotals()
+        cart.add(p.id)
     }
 
     private fun showCartTotals() {
@@ -45,7 +50,7 @@ class CartPresenter: MvpPresenter<CartView>() {
 
 
     private fun calcTotalPrice() {
-        val totalPrice = products.sumByDouble { product -> product.getPrice() }
+        val totalPrice = products.sumByDouble { product -> product.price }
         viewState.showTotalPrice(Product.format(totalPrice))
     }
 

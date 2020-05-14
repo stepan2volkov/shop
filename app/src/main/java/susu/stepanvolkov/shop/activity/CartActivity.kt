@@ -1,7 +1,9 @@
 package susu.stepanvolkov.shop.activity
 
 
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -9,15 +11,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
 import moxy.MvpAppCompatActivity
+import moxy.ktx.moxyPresenter
 import susu.stepanvolkov.shop.R
 import susu.stepanvolkov.shop.activity.adapter.CartOrderListAdapter
+import susu.stepanvolkov.shop.model.CartProductDAOImpl
 import susu.stepanvolkov.shop.model.Product
 import susu.stepanvolkov.shop.presenter.CartPresenter
 import susu.stepanvolkov.shop.presenter.view.CartView
 
 class CartActivity : MvpAppCompatActivity(), CartView {
 
-    private val presenter = CartPresenter()
+    private val presenter by moxyPresenter { CartPresenter(CartProductDAOImpl(sharedPreferences)) }
     private val adapter = CartOrderListAdapter { p -> presenter.removeItem(p) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,11 +37,6 @@ class CartActivity : MvpAppCompatActivity(), CartView {
         checkoutOrderBtn.setOnClickListener{
             val intent = Intent(this, CheckoutActivity::class.java)
             startActivity(intent)
-        }
-
-        testBtn.setOnClickListener{
-            val p = Product(id=12, name="Test", price = 78999.0, salePercent = 13)
-            presenter.insertItem(p)
         }
 
         orderList.layoutManager = LinearLayoutManager(this)
@@ -70,3 +69,6 @@ class CartActivity : MvpAppCompatActivity(), CartView {
         adapter.notifyItemInserted(position)
     }
 }
+
+val MvpAppCompatActivity.sharedPreferences: SharedPreferences
+    get() = getSharedPreferences("data", MODE_PRIVATE)

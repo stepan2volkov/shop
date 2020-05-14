@@ -3,15 +3,17 @@ package susu.stepanvolkov.shop.presenter
 import androidx.core.text.isDigitsOnly
 import moxy.InjectViewState
 import moxy.MvpPresenter
+import susu.stepanvolkov.shop.model.CartProductDAO
 import susu.stepanvolkov.shop.model.Product
 import susu.stepanvolkov.shop.model.Repository
 import susu.stepanvolkov.shop.presenter.view.CheckoutView
 
 @InjectViewState
-class CheckoutPresenter: MvpPresenter<CheckoutView>() {
+class CheckoutPresenter(
+    private val cart: CartProductDAO
+): BasePresenter<CheckoutView>() {
 
-    private val products: List<Product> =
-        Repository.getProducts()
+    private val products: MutableList<Product> = Repository.getProductListByIds(cart.list())
 
     /**
      * @return formatted total price of [products] in Cart with applied discount
@@ -31,7 +33,7 @@ class CheckoutPresenter: MvpPresenter<CheckoutView>() {
 
 
     private fun calcTotalPrice() {
-        val totalPrice = products.sumByDouble { product -> product.getPrice() }
+        val totalPrice = products.sumByDouble { product -> product.price }
         viewState.showTotalPrice(Product.format(totalPrice))
     }
 
