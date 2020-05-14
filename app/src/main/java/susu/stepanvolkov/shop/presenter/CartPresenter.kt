@@ -1,11 +1,12 @@
 package susu.stepanvolkov.shop.presenter
 
+import moxy.InjectViewState
 import moxy.MvpPresenter
 import susu.stepanvolkov.shop.presenter.view.CartView
 import susu.stepanvolkov.shop.model.Product
 import susu.stepanvolkov.shop.model.Repository
 
-
+@InjectViewState
 class CartPresenter: MvpPresenter<CartView>() {
 
     private val products: MutableList<Product> =

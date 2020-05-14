@@ -1,12 +1,13 @@
 package susu.stepanvolkov.shop.presenter
 
 import androidx.core.text.isDigitsOnly
+import moxy.InjectViewState
 import moxy.MvpPresenter
 import susu.stepanvolkov.shop.model.Product
 import susu.stepanvolkov.shop.model.Repository
 import susu.stepanvolkov.shop.presenter.view.CheckoutView
 
-
+@InjectViewState
 class CheckoutPresenter: MvpPresenter<CheckoutView>() {
 
     private val products: List<Product> =

@@ -1,10 +1,12 @@
 package susu.stepanvolkov.shop.presenter
 
+import moxy.InjectViewState
 import moxy.MvpPresenter
 import susu.stepanvolkov.shop.model.Product
 import susu.stepanvolkov.shop.model.Repository
 import susu.stepanvolkov.shop.presenter.view.ProductDetailView
 
+@InjectViewState
 class ProductDetailPresenter: MvpPresenter<ProductDetailView>() {
 
     fun setProductDetails(id: Int) {
