@@ -7,9 +7,10 @@ import susu.stepanvolkov.shop.model.CartProductDAO
 import susu.stepanvolkov.shop.model.Product
 import susu.stepanvolkov.shop.model.Repository
 import susu.stepanvolkov.shop.presenter.view.CheckoutView
+import javax.inject.Inject
 
 @InjectViewState
-class CheckoutPresenter(
+class CheckoutPresenter @Inject constructor(
     private val cart: CartProductDAO
 ): BasePresenter<CheckoutView>() {
 

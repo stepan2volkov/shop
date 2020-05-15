@@ -11,9 +11,10 @@ import susu.stepanvolkov.shop.presenter.view.CatalogView
 import java.net.ConnectException
 import java.net.SocketException
 import java.net.UnknownHostException
+import javax.inject.Inject
 
 @InjectViewState
-class CatalogPresenter(
+class CatalogPresenter @Inject constructor(
     private val api: Api
 ): BasePresenter<CatalogView>() {
 

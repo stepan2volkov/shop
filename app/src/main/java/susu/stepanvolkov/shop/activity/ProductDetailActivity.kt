@@ -13,22 +13,28 @@ import kotlinx.android.synthetic.main.activity_product_detail.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
+import susu.stepanvolkov.shop.App
 import susu.stepanvolkov.shop.R
 import susu.stepanvolkov.shop.model.CartProductDAO
 import susu.stepanvolkov.shop.model.CartProductDAOImpl
 import susu.stepanvolkov.shop.presenter.ProductDetailPresenter
 import susu.stepanvolkov.shop.presenter.view.ProductDetailView
+import javax.inject.Inject
 
 class ProductDetailActivity : MvpAppCompatActivity(), ProductDetailView {
 
-    private val presenter by moxyPresenter { ProductDetailPresenter() }
+    @Inject
+    lateinit var  productDetailPresenter: ProductDetailPresenter
+    private val presenter by moxyPresenter { productDetailPresenter }
+
     private lateinit var cart: CartProductDAO
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        App.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)
 
-        cart = CartProductDAOImpl(sharedPreferences)
+//        cart = CartProductDAOImpl(sharedPreferences)
         toolbar.headerText.text = ""
         toolbar.headerBackBtn.setOnClickListener{ finish() }
         toolbar.shoppingCartBtn.visibility = View.GONE
@@ -37,14 +43,7 @@ class ProductDetailActivity : MvpAppCompatActivity(), ProductDetailView {
 
         val id = intent.getIntExtra(CatalogActivity.PRODUCT_ID, 0)
         presenter.setProductDetails(id)
-        addToCartBtn.setOnClickListener {
-            cart.add(id)
-            addToCartBtn.text = "В корзину"
-            addToCartBtn.setOnClickListener {
-                val intent = Intent(this, CartActivity::class.java)
-                startActivity(intent)
-            }
-        }
+        addToCartBtn.setOnClickListener {presenter.onAddToCart(id) }
     }
 
     override fun showProductName(name: String) {
@@ -67,5 +66,13 @@ class ProductDetailActivity : MvpAppCompatActivity(), ProductDetailView {
 
     override fun setImage(url: String) {
         if (url!="") Picasso.get().load(url).into( productImage)
+    }
+
+    override fun changeBtn() {
+        addToCartBtn.text = "В корзину"
+        addToCartBtn.setOnClickListener {
+            val intent = Intent(this, CartActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

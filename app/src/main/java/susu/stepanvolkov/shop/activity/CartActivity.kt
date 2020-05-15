@@ -12,19 +12,24 @@ import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
+import susu.stepanvolkov.shop.App
 import susu.stepanvolkov.shop.R
 import susu.stepanvolkov.shop.activity.adapter.CartOrderListAdapter
 import susu.stepanvolkov.shop.model.CartProductDAOImpl
 import susu.stepanvolkov.shop.model.Product
 import susu.stepanvolkov.shop.presenter.CartPresenter
 import susu.stepanvolkov.shop.presenter.view.CartView
+import javax.inject.Inject
 
 class CartActivity : MvpAppCompatActivity(), CartView {
 
-    private val presenter by moxyPresenter { CartPresenter(CartProductDAOImpl(sharedPreferences)) }
+    @Inject
+    lateinit var cartPresenter: CartPresenter
+    private val presenter by moxyPresenter { cartPresenter }
     private val adapter = CartOrderListAdapter { p -> presenter.removeItem(p) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        App.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
 
@@ -69,6 +74,3 @@ class CartActivity : MvpAppCompatActivity(), CartView {
         adapter.notifyItemInserted(position)
     }
 }
-
-val MvpAppCompatActivity.sharedPreferences: SharedPreferences
-    get() = getSharedPreferences("data", MODE_PRIVATE)

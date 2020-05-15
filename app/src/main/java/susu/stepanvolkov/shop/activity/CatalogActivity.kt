@@ -16,21 +16,20 @@ import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import susu.stepanvolkov.shop.App
 import susu.stepanvolkov.shop.R
 import susu.stepanvolkov.shop.activity.adapter.CatalogAdapter
 import susu.stepanvolkov.shop.model.Api
 import susu.stepanvolkov.shop.model.Product
 import susu.stepanvolkov.shop.presenter.CatalogPresenter
 import susu.stepanvolkov.shop.presenter.view.CatalogView
+import javax.inject.Inject
 
 class CatalogActivity : MvpAppCompatActivity(), CatalogView {
 
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.0.105:5000/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-    private val service = retrofit.create(Api::class.java)
-    private val presenter by moxyPresenter { CatalogPresenter(service) }
+    @Inject
+    lateinit var catalogPresenter: CatalogPresenter
+    private val presenter by moxyPresenter { catalogPresenter }
     private val adapter = CatalogAdapter { id ->
         val intent = Intent(this, ProductDetailActivity::class.java).apply {
             putExtra(PRODUCT_ID, id)
@@ -40,6 +39,7 @@ class CatalogActivity : MvpAppCompatActivity(), CatalogView {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        App.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_catalog)
 

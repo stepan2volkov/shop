@@ -8,9 +8,10 @@ import susu.stepanvolkov.shop.model.CartProductDAOImpl
 import susu.stepanvolkov.shop.presenter.view.CartView
 import susu.stepanvolkov.shop.model.Product
 import susu.stepanvolkov.shop.model.Repository
+import javax.inject.Inject
 
 @InjectViewState
-class CartPresenter(
+class CartPresenter @Inject constructor(
     private val cart: CartProductDAO
 ): BasePresenter<CartView>() {
 

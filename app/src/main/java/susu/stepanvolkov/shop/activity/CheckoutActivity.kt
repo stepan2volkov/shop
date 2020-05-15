@@ -10,16 +10,21 @@ import kotlinx.android.synthetic.main.activity_checkout.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
+import susu.stepanvolkov.shop.App
 import susu.stepanvolkov.shop.R
 import susu.stepanvolkov.shop.model.CartProductDAOImpl
 import susu.stepanvolkov.shop.presenter.CheckoutPresenter
 import susu.stepanvolkov.shop.presenter.view.CheckoutView
+import javax.inject.Inject
 
 class CheckoutActivity : MvpAppCompatActivity(), CheckoutView {
 
-    private val presenter by moxyPresenter { CheckoutPresenter(CartProductDAOImpl(sharedPreferences)) }
+    @Inject
+    lateinit var checkoutPresenter: CheckoutPresenter
+    private val presenter by moxyPresenter { checkoutPresenter }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        App.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_checkout)
 
